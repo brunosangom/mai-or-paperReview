@@ -1,36 +1,55 @@
-\documentclass[a4paper,10pt,twocolumn]{article}
-
+\documentclass{beamer}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
+\usepackage{cite}
 \usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage{float}
-\usepackage[margin=0.5in]{geometry}
+\usepackage{fontawesome}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{array}
 \usepackage{subcaption}
 
-\title{OR: Paper Review \\ \Large{MaGIC: Multi-modality Guided Image Completion~\cite{magic}}}
+
+% Beamer theme settings
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{OR Paper Review \\MaGIC:  Multi-modality Guided Image Completion}
 \author{Bruno Sánchez Gómez}
 \date{\today}
 
+\setbeamertemplate{footline}{%
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=0.2\paperwidth,ht=2.5ex,dp=1.125ex,center]{author in head/foot}%
+            \hspace*{2mm}Bruno Sánchez Gómez
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=0.7\paperwidth,ht=2.5ex,dp=1.125ex,center]{title in head/foot}%
+            \insertshorttitle
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=0.1\paperwidth,ht=2.5ex,dp=1.125ex,center]{date in head/foot}%
+            \hspace*{-2mm}\insertframenumber{} / \inserttotalframenumber
+        \end{beamercolorbox}%
+    }%
+    \vskip0pt%
+}
+
 \begin{document}
 
-\twocolumn[
-\maketitle
-\begin{abstract}
-    This report presents a comprehensive reproduction of the Path Integral Clustering (PIC) algorithm introduced by Zhang et al \cite{PIC}. PIC leverages concepts from statistical physics to effectively cluster data with complex manifold structures by measuring connectivity through path integrals. We implement the algorithm and evaluate it against eleven state-of-the-art clustering methods on both synthetic and real-world imagery datasets (MNIST, USPS, and Caltech-256). Our experiments confirm PIC's exceptional performance, achieving the highest Normalized Mutual Information scores on MNIST ($0.940$) and Caltech-256 ($0.653$), while showing competitive results on USPS. We extend the evaluation to include additional datasets (Iris and Breast Cancer) and metrics (Silhouette score), providing insights into PIC's strengths with non-convex clusters. Scalability analysis reveals that PIC's runtime increases primarily with sample count rather than dimensionality. Despite some reproduction challenges due to implementation ambiguities, our results validate PIC as a significant advancement in clustering methodology, particularly for datasets with complex structures.
-\end{abstract}
-\vspace{2em}
-]
+\begin{frame}
+    \titlepage
+\end{frame}
 
-\input{sections/introduction}
 
-\input{sections/pic}
+\begin{frame}{Table of Contents}
+    \tableofcontents
+\end{frame}
 
-\input{sections/experiments}
-
-\input{sections/conclusion}
-
-\bibliographystyle{unsrt}
-\bibliography{references}
+\begin{frame}{References}
+    \begin{itemize}
+        \item \textbf{MaGIC:  Multi-modality Guided Image Completion} \\
+        \url{https://arxiv.org/abs/2303.14100}
+    \end{itemize}
+\end{frame}
 
 \end{document}
