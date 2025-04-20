@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[pdf]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage{cite}
 \usepackage{graphicx}
@@ -45,22 +45,72 @@
     \tableofcontents
 \end{frame}
 
-\section{MaGIC Overview}
+\section{Introduction}
+
+\begin{frame}{Image Completion}
+    \centering
+    \begin{minipage}{0.8\textwidth}
+        \begin{block}{Definition}
+            \centering
+            \textit{Image completion} refers to the task of filling in missing regions within an image in a visually plausible way.
+        \end{block}
+    \end{minipage}
+    \vspace{0.5cm}
+    \begin{itemize}
+        \item \textbf{Applications:}
+            \begin{itemize}
+                \item \textbf{Inpainting:} Restoring damaged or missing parts of an image.
+                \item \textbf{Outpainting:} Extending the boundaries of an image.
+                \item \textbf{Editing:} Modifying images by adding or removing elements.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Approaches to Image Completion}
+    \begin{itemize}
+        \item \textbf{Vanilla Image Completion:}
+        \begin{itemize}
+            \item Relies solely on existing image pixels around the masked region.
+            \item Struggles with large missing areas due to limited internal context.
+            \item Often leads to blurry or repetitive textures.
+        \end{itemize}
+        \item \textbf{Guided Image Completion:}
+        \begin{itemize}
+            \item Uses external cues (e.g., text descriptions, edge maps, segmentation masks) for guidance.
+            \item Improves results significantly, especially for large gaps, by providing external semantic information.
+            \item Existing methods often restricted to \textit{single-modality} guidance, limiting flexibility and performance in complex scenarios requiring multiple constraints.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{Multi-modal Guided Image Completion (MaGIC)}
     \begin{itemize}
-        \item \textbf{Problem:} Vanilla image completion struggles with large missing regions; existing guided methods often use only a single modality.
-        \item \textbf{MaGIC Solution:} A flexible framework for image completion guided by single or \textit{arbitrary combinations} of modalities (Text, Edge, Sketch, Segmentation, Depth, Pose).
-        \item \textbf{Components:}
+        \item \textbf{MaGIC:} A flexible framework for image completion guided by single or \textit{arbitrary combinations} of modalities, such as:
         \begin{itemize}
-            \item \textbf{Modality-specific Conditional U-Net (MCU-Net):} Injects single-modal guidance into a U-Net denoiser.
-            \item \textbf{Consistent Modality Blending (CMB):} Training-free method to blend guidance from multiple pre-trained MCU-Nets via latent space gradients. Enables easy addition of new modalities.
+            \item Text
+            \item Canny Edge
+            \item Sketch
+            \item Segmentation
+            \item Depth
+            \item Pose
         \end{itemize}
         \item \textbf{Results:} Outperforms SOTA methods and generalizes well to various completion tasks.
     \end{itemize}
 \end{frame}
 
+\section{MaGIC Overview}
+\begin{frame}{Table of Contents}
+    \tableofcontents[currentsection]
+\end{frame}
 \begin{frame}{Examples}
     Image examples from the paper (maybe more than 1 slide)
+\end{frame}
+
+\begin{frame}{Components of MaGIC}
+    \begin{itemize}
+        \item \textbf{Modality-specific Conditional U-Net (MCU-Net):} Injects single-modal guidance into a U-Net denoiser.
+        \item \textbf{Consistent Modality Blending (CMB):} Training-free method to blend guidance from multiple pre-trained MCU-Nets via latent space gradients. Enables easy addition of new modalities.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{MCU-Net}
@@ -72,6 +122,9 @@
 \end{frame}
 
 \section{Critical Analysis}
+\begin{frame}{Table of Contents}
+    \tableofcontents[currentsection]
+\end{frame}
 \begin{frame}{Why did MaGIC succeed?}
     
 \end{frame}
