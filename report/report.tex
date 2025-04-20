@@ -45,6 +45,50 @@
     \tableofcontents
 \end{frame}
 
+\section{MaGIC Overview}
+\begin{frame}{Multi-modal Guided Image Completion (MaGIC)}
+    \begin{itemize}
+        \item \textbf{Problem:} Vanilla image completion struggles with large missing regions; existing guided methods often use only a single modality.
+        \item \textbf{MaGIC Solution:} A flexible framework for image completion guided by single or \textit{arbitrary combinations} of modalities (Text, Edge, Sketch, Segmentation, Depth, Pose).
+        \item \textbf{Components:}
+        \begin{itemize}
+            \item \textbf{Modality-specific Conditional U-Net (MCU-Net):} Injects single-modal guidance into a U-Net denoiser.
+            \item \textbf{Consistent Modality Blending (CMB):} Training-free method to blend guidance from multiple pre-trained MCU-Nets via latent space gradients. Enables easy addition of new modalities.
+        \end{itemize}
+        \item \textbf{Results:} Outperforms SOTA methods and generalizes well to various completion tasks.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Examples}
+    Image examples from the paper (maybe more than 1 slide)
+\end{frame}
+
+\begin{frame}{MCU-Net}
+    Explain MCU-Net
+\end{frame}
+
+\begin{frame}{CMB}
+    Explain CMB
+\end{frame}
+
+\section{Critical Analysis}
+\begin{frame}{Why did MaGIC succeed?}
+    
+\end{frame}
+
+\begin{frame}{Where did MaGIC fail?}
+
+\end{frame}
+
+\begin{frame}{Future Implications [Placeholder]}
+    \begin{itemize}
+        \item \textbf{Generalization:} MaGIC's framework can be applied to other image generation tasks, such as inpainting or super-resolution.
+        \item \textbf{Modality Fusion:} The CMB method can be extended to fuse more complex modalities, such as audio or video.
+        \item \textbf{Real-world Applications:} Potential applications in fields like medical imaging, autonomous driving, and augmented reality.
+    \end{itemize}
+    
+\end{frame}
+
 \begin{frame}{References}
     \begin{itemize}
         \item \textbf{MaGIC:  Multi-modality Guided Image Completion} \\
