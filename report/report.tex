@@ -145,7 +145,7 @@
         \begin{cases}
             z_{t-1} = z'_{t-1} - \sigma_t \gamma \nabla_{z_t} \ell(\hat{F}_C, F_*)
             \\
-            \ell(\hat{F}_C, F_*) = \frac{1}{N \cdot L} \sum\limits_{c\in C} \sum\limits_{l=1}^{L} \left\| \hat{F}_c^l - F_*^l \right\|_2^2
+            \ell(\hat{F}_C, F_*) = \frac{1}{N \cdot L} \sum\limits_{c\in C} \sum\limits_{l=1}^{L} \delta_c \left\| \hat{F}_c^l - F_*^l \right\|_2^2
         \end{cases}
         \]
         \item \textbf{Properties:}
@@ -161,7 +161,7 @@
 \begin{frame}[shrink=13]{Quantitative Results}
     % FID is a measure of the distance between the distribution of generated images and real images. Lower values indicate better performance.
     % PickScore is a measure of the quality of generated images based on human judgment. Higher values indicate better performance.
-    % U-IDS and P-IDS are measures of the diversity of generated images. Higher values indicate better performance.
+    % U-IDS (Unconditional Inception Distance Score) and P-IDS (Perceptual Inception Distance Score) are measures of the diversity of generated images. Higher values indicate better performance.
     \scriptsize
     \vspace{1.2cm}
     \begin{table}[h]
