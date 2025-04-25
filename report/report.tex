@@ -119,7 +119,7 @@
     \end{figure}
     \begin{itemize}
         \item \textbf{Modality-specific Conditional U-Net (MCU-Net):} Injects single-modal guidance into a U-Net denoiser.
-        \item \textbf{Consistent Modality Blending (CMB):} Training-free method to blend guidance from multiple pre-trained MCU-Nets, which enables easy addition of new modalities.
+        \item \textbf{Consistent Modality Blending (CMB):} Training-free method to blend guidance from multiple pre-trained MCU-Nets.
     \end{itemize}
 \end{frame}
 
@@ -129,7 +129,6 @@
             \item The encoding network $\tau_c$ is employed to extract multi-scale guidance signals, $F_c^l$.
             \item Each $F_c^l$ is injected to the latent in MCU-Net to obtain modality-guided features.
             \item To leverage pre-trained SD, the U-Net denoiser is frozen. Only the encoding network $\tau_c$ is trained to extract guidance for the frozen denoiser.
-            \item Achieves image completion under single-modality guidance.
         \end{itemize}
     \end{minipage}%
     \begin{minipage}{0.35\textwidth}
@@ -151,16 +150,15 @@
         \item \textbf{Properties:}
         \begin{itemize}
             \item It is \textit{training-free}, as it operates on already trained MCU-Nets.
-            \item Allows for \textit{arbitraty combination} of available modalities.
-            \item Straightforward \textit{integration of new modalities}, by simply training a new MCU-Net for them. Avoids complex joint re-training.
+            \item Allows for \textit{arbitrary combination} of available modalities.
         \end{itemize}
         
     \end{itemize}
 \end{frame}
 
 \begin{frame}[shrink=13]{Quantitative Results}
-    % FID is a measure of the distance between the distribution of generated images and real images. Lower values indicate better performance.
-    % PickScore is a measure of the quality of generated images based on human judgment. Higher values indicate better performance.
+    % FID (Frechet Inception Distance) is a measure of the distance between the distribution of generated images and real images. Lower values indicate better performance.
+    % PickScore is a measure of the quality of generated images based on learned human judgment. Higher values indicate better performance.
     % U-IDS (Unconditional Inception Distance Score) and P-IDS (Perceptual Inception Distance Score) are measures of the diversity of generated images. Higher values indicate better performance.
     \scriptsize
     \vspace{1.2cm}
@@ -187,26 +185,50 @@
 \end{frame}
 
 \begin{frame}{Qualitative Results}
-    Image examples from the paper
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{figures/examples.png}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{figures/comparison.png}
+    \end{figure}
 \end{frame}
 
 \section{Critical Analysis}
 \begin{frame}{Table of Contents}
     \tableofcontents[currentsection]
 \end{frame}
-\begin{frame}{Why did MaGIC succeed?}
-    
-\end{frame}
-
-\begin{frame}{Where did MaGIC fail?}
-
-\end{frame}
-
-\begin{frame}{Future Implications [Placeholder]}
+\begin{frame}{Pros}
     \begin{itemize}
-        \item \textbf{Generalization:} MaGIC's framework can be applied to other image generation tasks, such as inpainting or super-resolution.
-        \item \textbf{Modality Fusion:} The CMB method can be extended to fuse more complex modalities, such as audio or video.
-        \item \textbf{Real-world Applications:} Potential applications in fields like medical imaging, autonomous driving, and augmented reality.
+        \item \textbf{Single-Modality Performance:} Each MCU-Net achieves image completion that competes with other single-modality SOTA approaches.
+        \item \textbf{Flexibility:} MaGIC's framework enables \textit{arbitrary combination of modalities}, allowing the user to choose the most suitable guidance for their specific task.
+        \item \textbf{Extensibility:} The CMB method is training-free, allowing for straightforward \textit{integration of new modalities}, by simply training a new MCU-Net for them. Avoids complex joint re-training.
+        \item \textbf{Transparency:} The code is available on \hyperlink{https://github.com/yeates/MaGIC}{GitHub}, allowing for reproducibility and further research.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Cons}
+    \begin{itemize}
+        \item \textbf{Dependency on Pre-trained Models:}
+        \begin{itemize}
+            \item The conditioning method (MCU-Net) is designed around the specific architecture of U-Net, and would need to be completely reworked for other backbones.
+            \item The quality of image details heavily relies on the performance of pre-trained models used for MCU-Net.
+        \end{itemize}
+        \item \textbf{Training Time:} The paper does not provide information on the training time required for each MCU-Net, making it difficult to assess the overall training cost when adding new modalities.
+        \item \textbf{Inference Efficiency:} MaGIC (as well as every other SD model) is less efficient than single-step models. Additionally, inference time increases in proportion to the number of guidance modalities used.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Future Implications}
+    \begin{itemize}
+        \item \textbf{Enhanced Creative Tools:} MaGIC's multi-modal flexibility could lead to more intuitive and powerful image editing software, allowing artists and designers to combine text prompts, sketches, and other references seamlessly.
+
+        \item \textbf{Expansion to New Modalities:} The extensible nature of CMB encourages incorporating novel guidance types beyond the ones presented (e.g., audio descriptions, style examples, 3D geometry).
+
+        \item \textbf{Video Inpainting and Editing:} Extending the MaGIC framework to video could enable sophisticated video restoration and editing guided by multiple user-defined constraints.
+
+        \item \textbf{Domain-Specific Applications:} Fine-tuning MCU-Nets for specific domains (e.g., medical imaging, robotics, satellite imagery analysis) could unlock specialized applications requiring diverse conditional inputs.
     \end{itemize}
 \end{frame}
 
